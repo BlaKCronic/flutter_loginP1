@@ -40,6 +40,14 @@ class DashboardScreen extends StatelessWidget {
           ),
 
           ListTile(
+            onTap: (){},
+            title: const Text('Popular Movies'),
+            subtitle: const Text('Test APIs'),
+            leading: const Icon(Icons.movie),
+            trailing: const Icon(Icons.chevron_right),
+          ),
+
+          ListTile(
             onTap: (){
               Navigator.pop(context);
               Navigator.pop(context);
