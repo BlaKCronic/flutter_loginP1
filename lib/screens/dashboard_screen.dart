@@ -40,7 +40,7 @@ class DashboardScreen extends StatelessWidget {
           ),
 
           ListTile(
-            onTap: (){},
+            onTap: () => Navigator.pushNamed(context,"/movies"),
             title: const Text('Popular Movies'),
             subtitle: const Text('Test APIs'),
             leading: const Icon(Icons.movie),

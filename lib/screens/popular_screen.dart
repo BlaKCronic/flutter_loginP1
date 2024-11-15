@@ -10,10 +10,36 @@ class PopularScreen extends StatefulWidget {
 
 class _PopularScreenState extends State<PopularScreen> {
 
-  ApiPopular apiPopular = new ApiPopular();
+  ApiPopular apiPopular = ApiPopular();
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('API Popular Movie'),
+      ),
+      body: FutureBuilder(
+        future: apiPopular.getAllPopular(),
+        builder: (context, snapshot){
+          if(snapshot.hasData){
+            return GridView.builder(
+              itemCount: snapshot.data!.length,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2
+              ),
+              itemBuilder: (context, index) {
+                return Text(snapshot.data![index].title);
+              },
+              );
+          }else{
+            if(snapshot.hasError){
+              return Center(child: Text(snapshot.error.toString()),);
+            }else{
+              return const Center(child: CircularProgressIndicator(),);
+            }
+          }
+        }
+        ),
+    );
   }
 }
